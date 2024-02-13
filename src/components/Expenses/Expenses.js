@@ -6,14 +6,16 @@ import ExpensesFilter from './ExpensesFilter'
 const Expenses = () => {
     const expenses = [
         {
+          id: 'id1',
           date: new Date(2023, 9, 6),
           title: 'New Book',
-          price: 30.99
+          amount: 30.99
         },
         {
+          id: 'id2',
           date: new Date(2023, 9, 6),
           title: 'New Jeans',
-          price: 99.99
+          amount: 99.99
         }
     ]  
 
@@ -24,12 +26,13 @@ const Expenses = () => {
     return (
         <Card className='expenses'>
             <ExpensesFilter onSaveYearData ={saveYearDataHandler}/>
-            <ExpenseItem
-            expenseData = {expenses[0]}  
-            />
-            <ExpenseItem
-            expenseData = {expenses[1]}  
-            />
+
+           {
+              expenses.map((expense) => {
+                return <ExpenseItem expenseData = {expense} key={expense.id}/> 
+              })
+           } 
+
         </Card>
     )
 } 
